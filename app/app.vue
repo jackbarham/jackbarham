@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>Jack Barham</h1>
+    <h1>Jack Barham is updated</h1>
   </div>
 </template>
