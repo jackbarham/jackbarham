@@ -8,6 +8,29 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/sanity',
     'nuxt-svgo',
-    'vue3-carousel-nuxt'
-  ]
+    'vue3-carousel-nuxt',
+  ],
+
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
+
+  runtimeConfig: {
+    sanity: {
+      token: '',
+    },
+    public: {
+      sanity: {
+        projectId: '',
+        dataset: '',
+      },
+    },
+  },
+
+  sanity: {
+    projectId: '',
+    dataset: '',
+    apiVersion: '2025-01-01',
+    useCdn: true,
+  },
 })
