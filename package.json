@@ -8,8 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "cf:dev": "wrangler pages dev ./dist --compatibility-date=2026-05-10 --compatibility-flag=nodejs_compat",
-    "cf:deploy": "nuxt build && wrangler pages deploy ./dist"
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "nuxt build && wrangler deploy"
   },
   "dependencies": {
     "@nuxt/fonts": "0.14.0",
