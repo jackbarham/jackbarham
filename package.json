@@ -9,12 +9,16 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "cf:dev": "wrangler dev",
-    "cf:deploy": "nuxt build && wrangler deploy"
+    "cf:deploy": "nuxt build && wrangler deploy",
+    "studio:dev": "pnpm --filter studio dev",
+    "studio:build": "pnpm --filter studio build",
+    "studio:deploy": "pnpm --filter studio deploy"
   },
   "dependencies": {
     "@nuxt/fonts": "0.14.0",
     "@nuxt/image": "2.0.0",
     "@nuxtjs/sanity": "2.3.0",
+    "@sanity/client": "^7.0.0",
     "nuxt": "^4.4.4",
     "nuxt-svgo": "5.3.0",
     "vue": "^3.5.33",

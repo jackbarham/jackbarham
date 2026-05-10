@@ -15,22 +15,16 @@ export default defineNuxtConfig({
     preset: 'cloudflare-module',
   },
 
-  runtimeConfig: {
-    sanity: {
-      token: '',
-    },
-    public: {
-      sanity: {
-        projectId: '',
-        dataset: '',
-      },
-    },
-  },
-
   sanity: {
-    projectId: '',
-    dataset: '',
-    apiVersion: '2025-01-01',
+    projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NUXT_PUBLIC_SANITY_DATASET,
+    apiVersion: '2026-02-01',
     useCdn: true,
+    visualEditing: {
+      studioUrl: process.env.NUXT_PUBLIC_SANITY_STUDIO_URL,
+      token: process.env.NUXT_SANITY_VIEWER_TOKEN,
+      stega: true,
+      mode: 'live-visual-editing',
+    },
   },
 })
