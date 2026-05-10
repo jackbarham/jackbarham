@@ -2,10 +2,27 @@ import { defineLocations, type PresentationPluginOptions } from 'sanity/presenta
 
 export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
-    homePage: defineLocations({
-      message: 'This document appears on the home page.',
+    settings: defineLocations({
+      message: 'This document is used everywhere on the site.',
       tone: 'positive',
-      locations: [{ title: 'Home', href: '/' }],
+      locations: [{ title: 'Site (all pages)', href: '/' }],
+    }),
+    page: defineLocations({
+      select: { title: 'title', slug: 'slug.current' },
+      resolve: (doc) => ({
+        locations: [
+          { title: doc?.title || 'Untitled page', href: `/${doc?.slug || ''}` },
+        ],
+      }),
+    }),
+    portfolio: defineLocations({
+      select: { title: 'title', slug: 'slug.current' },
+      resolve: (doc) => ({
+        locations: [
+          { title: doc?.title || 'Untitled portfolio item', href: `/portfolio/${doc?.slug || ''}` },
+          { title: 'Portfolio index', href: `/portfolio` },
+        ],
+      }),
     }),
   },
 }

@@ -2,7 +2,9 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { presentationTool } from 'sanity/presentation'
+import { media } from 'sanity-plugin-media'
 import { schemaTypes } from './schemaTypes'
+import { structure } from './structure'
 import { resolve } from './presentation/resolve'
 
 const previewOrigin =
@@ -14,6 +16,7 @@ export default defineConfig({
   projectId: 'wc9rahco',
   dataset: 'production',
   plugins: [
+    structureTool({ structure }),
     presentationTool({
       resolve,
       previewUrl: {
@@ -25,8 +28,8 @@ export default defineConfig({
         },
       },
     }),
-    structureTool(),
-    visionTool(),
+    media(),
+    ...(process.env.NODE_ENV === 'development' ? [visionTool()] : []),
   ],
   schema: {
     types: schemaTypes,
