@@ -1,0 +1,22 @@
+{
+  "name": "jackbarham",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/fonts": "0.14.0",
+    "@nuxt/image": "2.0.0",
+    "@nuxtjs/sanity": "2.3.0",
+    "nuxt": "^4.4.4",
+    "nuxt-svgo": "5.3.0",
+    "vue": "^3.5.33",
+    "vue-router": "^5.0.6",
+    "vue3-carousel-nuxt": "1.1.6"
+  }
+}
