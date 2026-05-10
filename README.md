@@ -1,13 +1,13 @@
 # jackbarham.com
 
-Personal site. Nuxt 4 (SSR) + Sanity CMS, deployed to Cloudflare Pages.
+Personal site. Nuxt 4 (SSR) + Sanity CMS, deployed to Cloudflare Workers (Workers Builds + Static Assets).
 
 ## Stack
 
 - [Nuxt 4](https://nuxt.com)
 - [@nuxtjs/sanity](https://sanity.nuxtjs.org/)
 - [@nuxt/image](https://image.nuxt.com), [@nuxt/fonts](https://fonts.nuxt.com), [nuxt-svgo](https://github.com/cpsoinos/nuxt-svgo)
-- Cloudflare Pages (Nitro `cloudflare-pages` preset)
+- Cloudflare Workers + Static Assets (Nitro `cloudflare-module` preset)
 
 ## Local development
 
@@ -21,7 +21,7 @@ To run against the actual Cloudflare Workers runtime (verifies `nodejs_compat` a
 
 ```bash
 pnpm build
-pnpm cf:dev
+pnpm cf:dev   # wrangler dev — uses wrangler.jsonc
 ```
 
 ## Environment variables
@@ -36,7 +36,7 @@ Locally these go in `.env`. In production they're set in the Cloudflare Pages pr
 
 ## Deploys
 
-Pushes to `main` auto-deploy to production via the Cloudflare Pages git integration. Other branches get a preview URL automatically. No manual step required.
+Pushes to `main` auto-deploy to production via Cloudflare Workers Builds (git integration). Other branches get a preview deployment automatically. The deploy command Cloudflare runs is `npx wrangler deploy`, which reads `wrangler.jsonc`.
 
 If you need to deploy without going through git:
 
@@ -48,13 +48,12 @@ pnpm cf:deploy
 
 ## One-time Cloudflare setup
 
-1. **Connect repo**: Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git
+1. **Connect repo**: Cloudflare dashboard → Workers & Pages → Create → Workers → Connect to Git
    - Production branch: `main`
    - Build command: `pnpm build`
-   - Build output directory: `dist`
-   - Framework preset: Nuxt
-2. **Set env vars**: Pages project → Settings → Variables and Secrets — add the three keys above for the Production environment (and Preview when you have a staging dataset)
-3. **Custom domains**: Pages project → Custom domains — add both `www.jackbarham.com` and `jackbarham.com`
+   - Deploy command: `npx wrangler deploy` (default)
+2. **Set env vars**: Worker → Settings → Variables and Secrets — add the three keys above for the Production environment (and Preview when you have a staging dataset). Mark `NUXT_SANITY_TOKEN` as a **Secret**
+3. **Custom domains**: Worker → Settings → Domains & Routes — add `www.jackbarham.com`. Add `jackbarham.com` only if needed by the redirect rule
 4. **Apex → www redirect**: zone for `jackbarham.com` → Rules → Redirect Rules → Create rule
    - When: `(http.host eq "jackbarham.com")`
    - Then: Dynamic → `concat("https://www.jackbarham.com", http.request.uri.path)`
@@ -62,4 +61,4 @@ pnpm cf:deploy
 
 ## Compatibility
 
-`wrangler.jsonc` pins `compatibility_date` and the `nodejs_compat` flag — required for Nitro's runtime polyfills on Cloudflare Workers.
+`wrangler.jsonc` pins `compatibility_date` and the `nodejs_compat` flag — required for Nitro's runtime polyfills on Cloudflare Workers. The `assets` block points at the static output and binds to `ASSETS`, which Nitro's `cloudflare-module` preset wires automatically.
