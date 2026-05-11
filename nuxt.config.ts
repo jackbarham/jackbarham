@@ -28,8 +28,10 @@ export default defineNuxtConfig({
 
   image: {
     provider: 'sanity',
+    quality: 80,
     sanity: {
-      projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
+      projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID!,
+      dataset: process.env.NUXT_PUBLIC_SANITY_DATASET!,
     },
   },
 

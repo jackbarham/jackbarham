@@ -17,7 +17,7 @@
             <NuxtLink to="/" class="hover:text-brand-red">{{ siteTitle }}</NuxtLink>
           </h1>
           <!-- <p class="max-w-56 lg:max-w-full mx-auto mb-6 md:mb-2">{{ footer?.tagline }}</p> -->
-          <p class="mx-auto text-sm opacity-60">Copyright &copy; 2010 - 2026 Airbox Media Ltd</p>
+          <p class="mx-auto text-sm opacity-60">Copyright &copy; 2026 Sunday South Ltd</p>
         </div>
       </div>
     </div>
