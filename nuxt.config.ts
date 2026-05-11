@@ -30,8 +30,8 @@ export default defineNuxtConfig({
     provider: 'sanity',
     quality: 80,
     sanity: {
-      projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID!,
-      dataset: process.env.NUXT_PUBLIC_SANITY_DATASET!,
+      projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID || 'wc9rahco',
+      dataset: process.env.NUXT_PUBLIC_SANITY_DATASET || 'production',
     },
   },
 
