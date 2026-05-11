@@ -7,5 +7,10 @@
   "assets": {
     "directory": "./.output/public",
     "binding": "ASSETS"
+  },
+  "vars": {
+    "NUXT_PUBLIC_SANITY_PROJECT_ID": "wc9rahco",
+    "NUXT_PUBLIC_SANITY_DATASET": "production",
+    "NUXT_PUBLIC_SANITY_STUDIO_URL": "https://jackbarham.sanity.studio"
   }
 }
