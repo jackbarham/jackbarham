@@ -1,7 +1,14 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  css: ['./app/assets/css/main.css'],
+
+  components: [
+    { path: '~/components', pathPrefix: false, global: true },
+  ],
 
   modules: [
     '@nuxt/fonts',
@@ -13,6 +20,17 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare-module',
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
+  image: {
+    provider: 'sanity',
+    sanity: {
+      projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
+    },
   },
 
   sanity: {
